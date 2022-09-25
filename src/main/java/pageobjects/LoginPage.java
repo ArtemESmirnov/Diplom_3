@@ -15,8 +15,10 @@ public class LoginPage {
     private SelenideElement emailTextField;
     @FindBy(how = How.XPATH, using =".//fieldset[2]/div/div/input")
     private SelenideElement passwordTextField;
-    @FindBy(how = How.XPATH, using =".//main/div/form/button")
+    @FindBy(how = How.XPATH, using =".//button[text()='Войти']")
     private SelenideElement loginButton;
+    @FindBy(how = How.XPATH, using =".//a[text()='Восстановить пароль']")
+    private SelenideElement restorePasswordLink;
     public SignupPage goToSignupPage(){
         signupLink.click();
         SignupPage signupPage = page(SignupPage.class);
@@ -37,8 +39,14 @@ public class LoginPage {
         mainPage.waitForLoad();
         return mainPage;
     }
+
+    public RestorePasswordPage goToRestorePassword(){
+        restorePasswordLink.click();
+        RestorePasswordPage restorePasswordPage = page(RestorePasswordPage.class);
+        restorePasswordPage.waitForLoad();
+        return restorePasswordPage;
+    }
     public void waitForLoad(){
-        //loginButton.shouldBe(visible);
         $(byText("Вы — новый пользователь?")).shouldBe(visible);
     }
 }

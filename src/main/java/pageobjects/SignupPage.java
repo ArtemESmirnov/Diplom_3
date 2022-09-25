@@ -18,6 +18,8 @@ public class SignupPage {
     private SelenideElement passwordTextField;
     @FindBy(how = How.XPATH, using =".//button[text()='Зарегистрироваться']")
     private SelenideElement signupButton;
+    @FindBy(how = How.XPATH, using =".//a[text()='Войти']")
+    private SelenideElement loginLink;
     public void waitForLoad(){
         $(byText("Зарегистрироваться")).shouldBe(visible);
     }
@@ -36,6 +38,13 @@ public class SignupPage {
 
     public LoginPage pressSignupButtonGoToLogin(){
         signupButton.click();
+        LoginPage loginPage = page(LoginPage.class);
+        loginPage.waitForLoad();
+        return loginPage;
+    }
+
+    public LoginPage pressLinkGoToLogin(){
+        loginLink.click();
         LoginPage loginPage = page(LoginPage.class);
         loginPage.waitForLoad();
         return loginPage;
