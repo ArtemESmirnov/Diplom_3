@@ -4,7 +4,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
 
@@ -47,6 +47,6 @@ public class LoginPage {
         return restorePasswordPage;
     }
     public void waitForLoad(){
-        $(byText("Вы — новый пользователь?")).shouldBe(visible);
+        $(byXpath(".//h2[text()='Вход']")).shouldBe(visible);
     }
 }

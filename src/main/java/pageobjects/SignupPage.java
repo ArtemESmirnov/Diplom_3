@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
 
 public class SignupPage {
@@ -21,7 +21,7 @@ public class SignupPage {
     @FindBy(how = How.XPATH, using =".//a[text()='Войти']")
     private SelenideElement loginLink;
     public void waitForLoad(){
-        $(byText("Зарегистрироваться")).shouldBe(visible);
+        $(byXpath(".//h2[text()='Регистрация']")).shouldBe(visible);
     }
 
     public void signup(String name, String email, String password){

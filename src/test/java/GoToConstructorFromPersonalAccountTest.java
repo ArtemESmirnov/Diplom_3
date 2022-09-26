@@ -17,9 +17,9 @@ import static requestgenerators.DeleteUserRequestGenerator.deleteUserRequest;
 import static requestgenerators.LoginUserRequestGenerator.loginUserRequest;
 
 public class GoToConstructorFromPersonalAccountTest {
-    final static String authUserApiPath = "/api/auth/user";
-    final static String authLoginApiPath = "/api/auth/login";
-    final static String authRegisterApiPath = "/api/auth/register";
+    final static String AUTH_USER_API_PATH = "/api/auth/user";
+    final static String AUTH_LOGIN_API_PATH = "/api/auth/login";
+    final static String AUTH_REGISTER_API_PATH = "/api/auth/register";
     private MainPage mainPage;
     private PersonalAccountPage personalAccountPage;
     private final String name = "TestName";
@@ -30,18 +30,18 @@ public class GoToConstructorFromPersonalAccountTest {
         EmailPasswordUserBody loginUserBody = new EmailPasswordUserBody(email, password);
         String token;
 
-        Response loginResponse = loginUserRequest(loginUserBody, authLoginApiPath);
+        Response loginResponse = loginUserRequest(loginUserBody, AUTH_LOGIN_API_PATH);
         if(loginResponse.statusCode() == SC_OK) {
             token = loginResponse.path("accessToken")
                     .toString().replaceAll("Bearer ", "");
-            assertEquals(SC_ACCEPTED, deleteUserRequest(token, authUserApiPath).statusCode());
+            assertEquals(SC_ACCEPTED, deleteUserRequest(token, AUTH_USER_API_PATH).statusCode());
         }
     }
 
     private void createUser(){
         WholeUserBody user = new WholeUserBody(email, password, name);
 
-        createUserRequest(user, authRegisterApiPath);
+        createUserRequest(user, AUTH_REGISTER_API_PATH);
     }
 
     @Before
@@ -62,13 +62,13 @@ public class GoToConstructorFromPersonalAccountTest {
     @Test
     public void goToConstructorViaConstructorLinkShouldBePossible(){
         mainPage = personalAccountPage.constructorLinkGotToMain();
-        $(byText("Соберите бургер")).shouldBe(visible);
+        $(byXpath(".//h1[text()='Соберите бургер']")).shouldBe(visible);
     }
 
     @Test
     public void goToConstructorViaLogoLinkShouldBePossible(){
         mainPage = personalAccountPage.logoLinkGotToMain();
-        $(byText("Соберите бургер")).shouldBe(visible);
+        $(byXpath(".//h1[text()='Соберите бургер']")).shouldBe(visible);
     }
 
     @After

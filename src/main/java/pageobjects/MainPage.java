@@ -5,16 +5,21 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
 public class MainPage {
     @FindBy(how = How.XPATH, using =".//a[@href = '/account']")
     private SelenideElement personalAccountLink;
-
     @FindBy(how = How.XPATH, using =".//button[text() = 'Войти в аккаунт']")
     private SelenideElement signInButton;
+    @FindBy(how = How.XPATH, using =".//span[text()='Булки']/parent::div")
+    private SelenideElement bunsTab;
+    @FindBy(how = How.XPATH, using =".//span[text()='Соусы']/parent::div")
+    private SelenideElement saucesTab;
+    @FindBy(how = How.XPATH, using =".//span[text()='Начинки']/parent::div")
+    private SelenideElement fillingsTab;
 
     public SelenideElement getBunsTab() {
         return bunsTab;
@@ -27,13 +32,6 @@ public class MainPage {
     public SelenideElement getFillingsTab() {
         return fillingsTab;
     }
-
-    @FindBy(how = How.XPATH, using =".//span[text()='Булки']/parent::div")
-    private SelenideElement bunsTab;
-    @FindBy(how = How.XPATH, using =".//span[text()='Соусы']/parent::div")
-    private SelenideElement saucesTab;
-    @FindBy(how = How.XPATH, using =".//span[text()='Начинки']/parent::div")
-    private SelenideElement fillingsTab;
 
     public LoginPage goToPersonalAccountWithoutLogin(){
         personalAccountLink.click();
@@ -77,6 +75,6 @@ public class MainPage {
     }
 
     public void waitForLoad(){
-        $(byText("Соберите бургер")).shouldBe(visible);
+        $(byXpath(".//h1[text()='Соберите бургер']")).shouldBe(visible);
     }
 }

@@ -18,6 +18,6 @@ public class RestorePasswordPage {
     }
 
     public void waitForLoad(){
-        $(byXpath(".//button[text()='Восстановить']")).shouldBe(visible);
+        $(byXpath(".//h2[text()='Восстановление пароля']")).shouldBe(visible);
     }
 }
