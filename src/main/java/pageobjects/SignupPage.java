@@ -36,11 +36,10 @@ public class SignupPage {
         passwordTextField.sendKeys(password);
     }
 
-    public LoginPage pressSignupButtonGoToLogin(){
+    public void pressSignupButtonGoToLogin(){
         signupButton.click();
         LoginPage loginPage = page(LoginPage.class);
         loginPage.waitForLoad();
-        return loginPage;
     }
 
     public LoginPage pressLinkGoToLogin(){

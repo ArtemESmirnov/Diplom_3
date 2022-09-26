@@ -70,7 +70,10 @@ public class MainPage {
 
     public boolean checkIfTabIsActive(SelenideElement tab){
         String classValue = tab.getAttribute("class");
-        return classValue.contains("current");
+        if(classValue == null)
+            return false;
+        else
+            return classValue.contains("current");
     }
 
     public void waitForLoad(){

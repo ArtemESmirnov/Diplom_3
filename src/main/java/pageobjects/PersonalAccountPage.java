@@ -31,11 +31,10 @@ public class PersonalAccountPage {
         return mainPage;
     }
 
-    public LoginPage signout(){
+    public void signout(){
         signoutButton.click();
         LoginPage loginPage = page(LoginPage.class);
         loginPage.waitForLoad();
-        return loginPage;
     }
 
     public void waitForLoad(){

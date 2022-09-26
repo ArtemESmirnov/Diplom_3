@@ -23,11 +23,8 @@ public class LoginTest {
     final static String authUserApiPath = "/api/auth/user";
     final static String authLoginApiPath = "/api/auth/login";
     final static String authRegisterApiPath = "/api/auth/register";
-    private SignupPage signupPage;
     private LoginPage loginPage;
     private MainPage mainPage;
-    private RestorePasswordPage restorePasswordPage;
-    private final String name = "TestName";
     private final String email = "testemail@gmail.com";
     private final String password = "testpassword";
 
@@ -44,6 +41,7 @@ public class LoginTest {
     }
 
     private void createUser(){
+        String name = "TestName";
         WholeUserBody user = new WholeUserBody(email, password, name);
 
         createUserRequest(user, authRegisterApiPath);
@@ -75,7 +73,7 @@ public class LoginTest {
     @Test
     public void loginLinkSignupFormLoginShouldBePossible(){
         loginPage = mainPage.goToPersonalAccountWithoutLogin();
-        signupPage = loginPage.goToSignupPage();
+        SignupPage signupPage = loginPage.goToSignupPage();
         loginPage = signupPage.pressLinkGoToLogin();
         mainPage = loginPage.login(email, password);
         $(byText("Соберите бургер")).shouldBe(visible);
@@ -84,7 +82,7 @@ public class LoginTest {
     @Test
     public void loginLinkRestorePasswordLoginShouldBePossible(){
         loginPage = mainPage.goToPersonalAccountWithoutLogin();
-        restorePasswordPage = loginPage.goToRestorePassword();
+        RestorePasswordPage restorePasswordPage = loginPage.goToRestorePassword();
         loginPage = restorePasswordPage.pressLinkGoToLogin();
         mainPage = loginPage.login(email, password);
         $(byText("Соберите бургер")).shouldBe(visible);

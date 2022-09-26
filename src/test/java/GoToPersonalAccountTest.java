@@ -20,8 +20,6 @@ public class GoToPersonalAccountTest {
     final static String authUserApiPath = "/api/auth/user";
     final static String authLoginApiPath = "/api/auth/login";
     final static String authRegisterApiPath = "/api/auth/register";
-    private SignupPage signupPage;
-    private LoginPage loginPage;
     private MainPage mainPage;
     private final String name = "TestName";
     private final String email = "testemail@gmail.com";
@@ -51,8 +49,8 @@ public class GoToPersonalAccountTest {
 
         mainPage = open("https://stellarburgers.nomoreparties.site/",
                 MainPage.class);
-        loginPage = mainPage.goToPersonalAccountWithoutLogin();
-        signupPage = loginPage.goToSignupPage();
+        LoginPage loginPage = mainPage.goToPersonalAccountWithoutLogin();
+        SignupPage signupPage = loginPage.goToSignupPage();
         createUser();
         signupPage.signup(name, email, password);
         loginPage = signupPage.pressLinkGoToLogin();

@@ -20,9 +20,6 @@ public class SignoutTest {
     final static String authUserApiPath = "/api/auth/user";
     final static String authLoginApiPath = "/api/auth/login";
     final static String authRegisterApiPath = "/api/auth/register";
-    private SignupPage signupPage;
-    private LoginPage loginPage;
-    private MainPage mainPage;
     private PersonalAccountPage personalAccountPage;
     private final String name = "TestName";
     private final String email = "testemail@gmail.com";
@@ -50,10 +47,10 @@ public class SignoutTest {
     public void setUp(){
         //System.setProperty("webdriver.chrome.driver", "F:\\Artem\\WebDriver\\bin\\yandexdriver.exe");
 
-        mainPage = open("https://stellarburgers.nomoreparties.site/",
+        MainPage mainPage = open("https://stellarburgers.nomoreparties.site/",
                 MainPage.class);
-        loginPage = mainPage.goToPersonalAccountWithoutLogin();
-        signupPage = loginPage.goToSignupPage();
+        LoginPage loginPage = mainPage.goToPersonalAccountWithoutLogin();
+        SignupPage signupPage = loginPage.goToSignupPage();
         createUser();
         signupPage.signup(name, email, password);
         loginPage = signupPage.pressLinkGoToLogin();

@@ -20,7 +20,6 @@ public class SignupTest {
     final static String authUserApiPath = "/api/auth/user";
     final static String authLoginApiPath = "/api/auth/login";
     private SignupPage signupPage;
-    private LoginPage loginPage;
     private final String name = "TestName";
     private final String email = "testemail@gmail.com";
     private String password = "testpassword";
@@ -43,7 +42,7 @@ public class SignupTest {
 
         MainPage mainPage = open("https://stellarburgers.nomoreparties.site/",
                 MainPage.class);
-        loginPage = mainPage.goToPersonalAccountWithoutLogin();
+        LoginPage loginPage = mainPage.goToPersonalAccountWithoutLogin();
         signupPage = loginPage.goToSignupPage();
     }
 

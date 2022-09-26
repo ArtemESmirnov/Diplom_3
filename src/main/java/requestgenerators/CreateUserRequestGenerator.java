@@ -1,6 +1,5 @@
 package requestgenerators;
 
-import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import pojos.WholeUserBody;
 
@@ -11,8 +10,8 @@ public class CreateUserRequestGenerator extends Request{
         super(requestSpecification);
     }
 
-    public static Response createUserRequest(WholeUserBody createUserBody, String apiPath){
-        return given()
+    public static void createUserRequest(WholeUserBody createUserBody, String apiPath){
+        given()
                 .spec(setRequestSpecification())
                 .header("Content-type", "application/json")
                 .and()
