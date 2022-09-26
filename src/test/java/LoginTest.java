@@ -25,11 +25,11 @@ public class LoginTest {
     final static String AUTH_REGISTER_API_PATH = "/api/auth/register";
     private LoginPage loginPage;
     private MainPage mainPage;
-    private final String email = "testemail@gmail.com";
-    private final String password = "testpassword";
+    private final String EMAIL = "testemail@gmail.com";
+    private final String PASSWORD = "testpassword";
 
     private void deleteUser(){
-        EmailPasswordUserBody loginUserBody = new EmailPasswordUserBody(email, password);
+        EmailPasswordUserBody loginUserBody = new EmailPasswordUserBody(EMAIL, PASSWORD);
         String token;
 
         Response loginResponse = loginUserRequest(loginUserBody, AUTH_LOGIN_API_PATH);
@@ -42,7 +42,7 @@ public class LoginTest {
 
     private void createUser(){
         String name = "TestName";
-        WholeUserBody user = new WholeUserBody(email, password, name);
+        WholeUserBody user = new WholeUserBody(EMAIL, PASSWORD, name);
 
         createUserRequest(user, AUTH_REGISTER_API_PATH);
     }
@@ -59,14 +59,14 @@ public class LoginTest {
     @Test
     public void loginButtonMainPageLoginShouldBePossible(){
         loginPage = mainPage.goToSignInForm();
-        mainPage = loginPage.login(email, password);
+        mainPage = loginPage.login(EMAIL, PASSWORD);
         $(byXpath(".//h1[text()='Соберите бургер']")).shouldBe(visible);
     }
 
     @Test
     public void loginButtonPersonalAccountLoginShouldBePossible(){
         loginPage = mainPage.goToPersonalAccountWithoutLogin();
-        mainPage = loginPage.login(email, password);
+        mainPage = loginPage.login(EMAIL, PASSWORD);
         $(byXpath(".//h1[text()='Соберите бургер']")).shouldBe(visible);
     }
 
@@ -75,7 +75,7 @@ public class LoginTest {
         loginPage = mainPage.goToPersonalAccountWithoutLogin();
         SignupPage signupPage = loginPage.goToSignupPage();
         loginPage = signupPage.pressLinkGoToLogin();
-        mainPage = loginPage.login(email, password);
+        mainPage = loginPage.login(EMAIL, PASSWORD);
         $(byXpath(".//h1[text()='Соберите бургер']")).shouldBe(visible);
     }
 
@@ -84,7 +84,7 @@ public class LoginTest {
         loginPage = mainPage.goToPersonalAccountWithoutLogin();
         RestorePasswordPage restorePasswordPage = loginPage.goToRestorePassword();
         loginPage = restorePasswordPage.pressLinkGoToLogin();
-        mainPage = loginPage.login(email, password);
+        mainPage = loginPage.login(EMAIL, PASSWORD);
         $(byXpath(".//h1[text()='Соберите бургер']")).shouldBe(visible);
     }
 

@@ -12,7 +12,7 @@ public class PersonalAccountPage {
     private SelenideElement profileLink;
     @FindBy(how = How.XPATH, using =".//p[text()='Конструктор']/ancestor::a")
     private SelenideElement constructorLink;
-    @FindBy(how = How.XPATH, using ="(.//a[@href='/'])[2]")
+    @FindBy(how = How.XPATH, using =".//div[contains (@class, 'logo')]/a")
     private SelenideElement logoLink;
     @FindBy(how = How.XPATH, using =".//button[text()='Выход']")
     private SelenideElement signoutButton;

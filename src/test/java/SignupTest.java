@@ -20,12 +20,12 @@ public class SignupTest {
     final static String AUTH_USER_API_PATH = "/api/auth/user";
     final static String AUTH_LOGIN_API_PATH = "/api/auth/login";
     private SignupPage signupPage;
-    private final String name = "TestName";
-    private final String email = "testemail@gmail.com";
+    private final String NAME = "TestName";
+    private final String EMAIL = "testemail@gmail.com";
     private String password = "testpassword";
 
     private void deleteUser(){
-        EmailPasswordUserBody loginUserBody = new EmailPasswordUserBody(email, password);
+        EmailPasswordUserBody loginUserBody = new EmailPasswordUserBody(EMAIL, password);
         String token;
 
         Response loginResponse = loginUserRequest(loginUserBody, AUTH_LOGIN_API_PATH);
@@ -48,7 +48,7 @@ public class SignupTest {
 
     @Test
     public void signUpCorrectShouldBePossibleTest() {
-        signupPage.signup(name, email, password);
+        signupPage.signup(NAME, EMAIL, password);
         signupPage.pressSignupButtonGoToLogin();
 
         $(byXpath(".//h2[text()='Вход']")).shouldBe(visible);
@@ -57,7 +57,7 @@ public class SignupTest {
     @Test
     public void signUpIncorrectPasswordShouldFail(){
         password = "12345";
-        signupPage.signup(name, email, password);
+        signupPage.signup(NAME, EMAIL, password);
         signupPage.pressSignupButton();
 
         $(byText("Некорректный пароль")).

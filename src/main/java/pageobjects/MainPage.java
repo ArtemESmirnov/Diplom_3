@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
 public class MainPage {
-    @FindBy(how = How.XPATH, using =".//a[@href = '/account']")
+    @FindBy(how = How.XPATH, using =".//p[text()='Личный Кабинет']/parent::a")
     private SelenideElement personalAccountLink;
     @FindBy(how = How.XPATH, using =".//button[text() = 'Войти в аккаунт']")
     private SelenideElement signInButton;

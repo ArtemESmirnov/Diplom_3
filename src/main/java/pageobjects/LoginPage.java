@@ -1,19 +1,17 @@
 package pageobjects;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
 
 public class LoginPage {
     @FindBy(how = How.XPATH, using =".//a[text()='Зарегистрироваться']")
     private SelenideElement signupLink;
-    @FindBy(how = How.XPATH, using =".//fieldset[1]/div/div/input")
+    @FindBy(how = How.XPATH, using =".//label[text()='Email']/following-sibling::input")
     private SelenideElement emailTextField;
-    @FindBy(how = How.XPATH, using =".//fieldset[2]/div/div/input")
+    @FindBy(how = How.XPATH, using =".//label[text()='Пароль']/following-sibling::input")
     private SelenideElement passwordTextField;
     @FindBy(how = How.XPATH, using =".//button[text()='Войти']")
     private SelenideElement loginButton;
@@ -27,14 +25,9 @@ public class LoginPage {
     }
 
     public MainPage login(String email, String password) {
-        emailTextField.sendKeys(Keys.CONTROL + "A");
-        emailTextField.sendKeys(Keys.BACK_SPACE);
         emailTextField.sendKeys(email);
-        passwordTextField.sendKeys(Keys.CONTROL + "A");
-        passwordTextField.sendKeys(Keys.BACK_SPACE);
         passwordTextField.sendKeys(password);
-        sleep(200);
-        loginButton.click();
+        loginButton.shouldBe(enabled).click();
         MainPage mainPage = page(MainPage.class);
         mainPage.waitForLoad();
         return mainPage;
@@ -47,6 +40,6 @@ public class LoginPage {
         return restorePasswordPage;
     }
     public void waitForLoad(){
-        $(byXpath(".//h2[text()='Вход']")).shouldBe(visible);
+        loginButton.shouldBe(enabled);
     }
 }

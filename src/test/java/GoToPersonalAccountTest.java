@@ -21,12 +21,12 @@ public class GoToPersonalAccountTest {
     final static String AUTH_LOGIN_API_PATH = "/api/auth/login";
     final static String AUTH_REGISTER_API_PATH = "/api/auth/register";
     private MainPage mainPage;
-    private final String name = "TestName";
-    private final String email = "testemail@gmail.com";
-    private final String password = "testpassword";
+    private final String NAME = "TestName";
+    private final String EMAIL = "testemail@gmail.com";
+    private final String PASSWORD = "testpassword";
 
     private void deleteUser(){
-        EmailPasswordUserBody loginUserBody = new EmailPasswordUserBody(email, password);
+        EmailPasswordUserBody loginUserBody = new EmailPasswordUserBody(EMAIL, PASSWORD);
         String token;
 
         Response loginResponse = loginUserRequest(loginUserBody, AUTH_LOGIN_API_PATH);
@@ -38,7 +38,7 @@ public class GoToPersonalAccountTest {
     }
 
     private void createUser(){
-        WholeUserBody user = new WholeUserBody(email, password, name);
+        WholeUserBody user = new WholeUserBody(EMAIL, PASSWORD, NAME);
 
         createUserRequest(user, AUTH_REGISTER_API_PATH);
     }
@@ -52,9 +52,9 @@ public class GoToPersonalAccountTest {
         LoginPage loginPage = mainPage.goToPersonalAccountWithoutLogin();
         SignupPage signupPage = loginPage.goToSignupPage();
         createUser();
-        signupPage.signup(name, email, password);
+        signupPage.signup(NAME, EMAIL, PASSWORD);
         loginPage = signupPage.pressLinkGoToLogin();
-        mainPage = loginPage.login(email, password);
+        mainPage = loginPage.login(EMAIL, PASSWORD);
     }
 
     @Test
